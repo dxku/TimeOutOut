@@ -12,8 +12,9 @@ import us.potatoboy.timeoutout.TimeOutOut;
 })
 public abstract class ChannelInitializerMixin {
     @ModifyArg(method = "initChannel(Lio/netty/channel/Channel;)V", at = @At(
+            remap = false,
             value = "INVOKE",
-            target = "io/netty/handler/timeout/ReadTimeoutHandler.<init> (I)V"
+            target = "io/netty/handler/timeout/ReadTimeoutHandler.<init>(I)V"
     ))
     private int getReadTimeout(int timeout) {
         return TimeOutOut.getConfig().readTimeoutSeconds;
